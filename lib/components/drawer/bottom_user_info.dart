@@ -1,3 +1,4 @@
+import 'package:akademi_kariyer/view/my_profile_screen.dart';
 import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,55 +27,63 @@ class BottomUserInfo extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.network(
-                          'https://t3.ftcdn.net/jpg/02/99/21/98/360_F_299219888_2E7GbJyosu0UwAzSGrpIxS0BrmnTCdo4.jpg',
-                          fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MyProfileScreen())),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.network(
+                            'https://t3.ftcdn.net/jpg/02/99/21/98/360_F_299219888_2E7GbJyosu0UwAzSGrpIxS0BrmnTCdo4.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                   ),
                   Expanded(
                     flex: 5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MyProfileScreen())),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                '${FirebaseAuth.instance.currentUser?.email}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.clip,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
                             child: Text(
-                              '${FirebaseAuth.instance.currentUser?.email}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                              'MEMBER',
+                              style: TextStyle(
+                                color: Colors.grey,
                               ),
                               maxLines: 1,
-                              overflow: TextOverflow.clip,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ),
-                        const Expanded(
-                          child: Text(
-                            'MEMBER',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   const Spacer(),
@@ -85,7 +94,9 @@ class BottomUserInfo extends StatelessWidget {
                       child: IconButton(
                         onPressed: () async {
                           await FirebaseAuth.instance.signOut();
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SignInScreen()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => SignInScreen()));
                         },
                         icon: const Icon(
                           Icons.logout,
@@ -100,19 +111,23 @@ class BottomUserInfo extends StatelessWidget {
           : Column(
               children: [
                 Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.network(
-                        'https://t3.ftcdn.net/jpg/02/99/21/98/360_F_299219888_2E7GbJyosu0UwAzSGrpIxS0BrmnTCdo4.jpg',
-                        fit: BoxFit.cover,
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => MyProfileScreen())),
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(
+                          'https://t3.ftcdn.net/jpg/02/99/21/98/360_F_299219888_2E7GbJyosu0UwAzSGrpIxS0BrmnTCdo4.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

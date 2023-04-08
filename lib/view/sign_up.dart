@@ -32,8 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.grey.shade900,
-          body: Center(
+      backgroundColor: Colors.grey.shade900,
+      body: Center(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,10 +43,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 width: 300,
                 child: Column(
                   children: [
-                    const Text("Hesap Oluştur", textScaleFactor: 2,),
-                    const SizedBox(height: 15,),
+                    const Text(
+                      "Hesap Oluştur",
+                      textScaleFactor: 2,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     TextField(
-                      style: const TextStyle(color:Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       controller: emailController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.email),
@@ -61,7 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      style: const TextStyle(color:Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       controller: passController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.lock),
@@ -76,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      style: const TextStyle(color:Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       controller: passTekrarController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.lock),
@@ -88,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 12,
                     ),
                     TextField(
-                      style: const TextStyle(color:Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       controller: uuidController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.key),
