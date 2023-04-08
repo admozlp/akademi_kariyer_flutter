@@ -2,6 +2,7 @@ import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:akademi_kariyer/components/drawer/custom_drawer.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'firebase_options.dart';
 import 'nav/NavigationMenu.dart';
 
@@ -13,13 +14,14 @@ void main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.orange,
@@ -49,18 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: const CustomDrawer(),
       backgroundColor: Colors.white10,
       body: Column(
-
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children:  [
-          ElevatedButton(onPressed: (){
-
-          },
-              child: Text("data"))
-        ],
+        children: [ElevatedButton(onPressed: () {}, child: Text("data"))],
       ),
       bottomNavigationBar: NavigationMenu(size: size),
     );
   }
 }
-

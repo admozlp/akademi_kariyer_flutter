@@ -27,73 +27,82 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return curentUser == null ? SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.grey.shade900,
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 300,
+    return curentUser == null
+        ? SafeArea(
+            child: Scaffold(
+            backgroundColor: Colors.grey.shade900,
+            body: Center(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Giriş Yap", textScaleFactor: 2,),
-                  const SizedBox(height: 15,),
-                  TextField(
-                    style: const TextStyle(color:Colors.white),
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
+                  SizedBox(
+                    width: 300,
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Giriş Yap",
+                          textScaleFactor: 2,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        TextField(
+                          style: const TextStyle(color: Colors.white),
+                          controller: emailController,
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(),
+                            labelText: 'Email',
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        TextField(
+                          obscureText: true,
+                          enableSuggestions: false,
+                          autocorrect: false,
+                          style: const TextStyle(color: Colors.white),
+                          controller: passController,
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.lock),
+                            border: OutlineInputBorder(),
+                            labelText: 'Password',
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  TextField(
-                    obscureText: true,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    style: const TextStyle(color:Colors.white),
-                    controller: passController,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                    ),
-                  ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        try {
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passController.text);
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const MyHomePage()));
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'user-not-found') {
+                            print('Email yanlış');
+                          } else if (e.code == 'wrong-password') {
+                            print('Parola Yanlış');
+                          }
+                        }
+                      },
+                      child: const Text("Giriş Yap")),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const SignUpScreen()));
+                      },
+                      child: const Text("Hesabınız yok mu? Kaydol"))
                 ],
               ),
             ),
-            ElevatedButton(
-                onPressed: () async {
-                  try {
-                    await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: emailController.text,
-                            password: passController.text);
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const MyHomePage()));
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'user-not-found') {
-                      print('Email yanlış');
-                    } else if (e.code == 'wrong-password') {
-                      print('Parola Yanlış');
-                    }
-                  }
-                },
-                child: const Text("Giriş Yap")),
-            TextButton(
-                onPressed: (){
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const SignUpScreen()));
-                },
-                child: const Text("Hesabınız yok mu? Kaydol"))
-          ],
-        ),
-      ),
-    )) : const MyHomePage();
+          ))
+        : const MyHomePage();
   }
 }
