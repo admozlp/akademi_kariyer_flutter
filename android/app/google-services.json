@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "405193748477",
+    "project_id": "akademikariyer-89f93",
+    "storage_bucket": "akademikariyer-89f93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405193748477:android:f7fff49e4f081bf4b5b394",
+        "android_client_info": {
+          "package_name": "com.example.akademi_kariyer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405193748477-3c2gol895gethhsnq64152bt58b5sf1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6GhUYEedx8Y5CY2dGnm7_klled3RNpME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405193748477-3c2gol895gethhsnq64152bt58b5sf1l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
