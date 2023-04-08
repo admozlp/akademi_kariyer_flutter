@@ -75,25 +75,22 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   ElevatedButton(
-                      // onPressed: () async {
-                      //   try {
-                      //     await FirebaseAuth.instance
-                      //         .signInWithEmailAndPassword(
-                      //             email: emailController.text,
-                      //             password: passController.text);
-                      //     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      //         builder: (context) => const MyHomePage()));
-                      //   } on FirebaseAuthException catch (e) {
-                      //     if (e.code == 'user-not-found') {
-                      //       print('Email yanlış');
-                      //     } else if (e.code == 'wrong-password') {
-                      //       print('Parola Yanlış');
-                      //     }
-                      //   }
-                      // },
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const MyHomePage()));
+                      onPressed: () async {
+                        try {
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passController.text);
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const MyHomePage()));
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'user-not-found') {
+                            print('Email yanlış');
+                          } else if (e.code == 'wrong-password') {
+                            print('Parola Yanlış');
+                          }
+                        }
                       },
                       child: const Text("Giriş Yap")),
                   TextButton(
