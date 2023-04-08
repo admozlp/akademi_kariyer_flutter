@@ -1,3 +1,4 @@
+import 'package:akademi_kariyer/view/my_projects_screen.dart';
 import 'package:akademi_kariyer/view/update_my_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -95,9 +96,9 @@ class MyProfileScreen extends StatelessWidget {
                   SizedBox(
                     width: 60,
                     child: ElevatedButton(
-                        onPressed: (() {
-                          _navigateToNextScreen(context);
-                        }),
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => UpdateProfileScreen())),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: academyBlue,
                             side: BorderSide.none,
@@ -187,7 +188,9 @@ class MyProfileScreen extends StatelessWidget {
               MenuItem(
                   itemTitle: "Projelerim",
                   itemIcon: Icons.file_copy_rounded,
-                  itemPressed: () {}),
+                  itemPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (context) => MyProjectsScreen()))),
               MenuItem(
                   itemTitle: "Becerilerim",
                   itemIcon: Icons.pan_tool_rounded,
