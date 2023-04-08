@@ -1,5 +1,6 @@
 import 'package:akademi_kariyer/components/drawer/bottom_user_info.dart';
 import 'package:akademi_kariyer/components/drawer/custom_list_tile.dart';
+import 'package:akademi_kariyer/view/my_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -33,11 +34,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 15),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.person,
-                title: 'Profil',
-                infoCount: 0,
+              InkWell(
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyProfileScreen())),
+                child: IgnorePointer(
+                  child: CustomListTile(
+                    isCollapsed: _isCollapsed,
+                    icon: Icons.person,
+                    title: 'Profil',
+                    infoCount: 0,
+                  ),
+                ),
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
