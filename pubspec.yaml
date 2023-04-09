@@ -44,6 +44,8 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   avatar_stack: ^1.2.0
   multi_select_flutter: ^4.1.3
+  firebase_database: ^10.1.0
+  readmore: ^2.1.0
 
 dev_dependencies:
   flutter_test:
