@@ -1,8 +1,11 @@
 // ignore_for_file: void_checks
 
+import 'package:akademi_kariyer/constants/colors.dart';
+import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../main.dart';
 
@@ -32,9 +35,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Colors.grey.shade900,
-      body: Center(
-        child: SingleChildScrollView(
+      backgroundColor: bgColor,
+      body: SingleChildScrollView(
+        child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -43,6 +46,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 width: 300,
                 child: Column(
                   children: [
+                    SizedBox(height: 48.0),
+                    Image(
+                      image: NetworkImage(
+                          "https://oyunveuygulamaakademisi.com/assets/site/oua/assets/sites/images/homepage-images/homepage_img_8.png"),
+                      height: 72.0,
+                    ),
+                    SizedBox(height: 16.0),
+                    Text(
+                      'Akademi Kariyer',
+                      style: TextStyle(
+                        color: academyBlack,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 48.0),
+                    Divider(
+                      color: academyBlue,
+                      thickness: 2,
+                    ),
+                    SizedBox(height: 48.0),
                     const Text(
                       "Hesap Oluştur",
                       textScaleFactor: 2,
@@ -104,7 +128,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      padding: EdgeInsets.all(15),
+                      shape: StadiumBorder(),
+                      backgroundColor: academyYellow),
                   onPressed: () async {
                     bool check = false;
                     try {
@@ -149,7 +181,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       print(e);
                     }
                   },
-                  child: const Text("Kaydol"))
+                  child: const Text("Kaydol")),
+              SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const SignInScreen()));
+                  },
+                  child: const Text(
+                    "Hesabınız var mı? Giriş Yap",
+                    style: TextStyle(color: academyDGray),
+                  ))
             ],
           ),
         ),

@@ -17,53 +17,57 @@ class NavigationMenu extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
-        Positioned(
-          bottom: 0,
-          left: 0,
-          child: SizedBox(
-            width: size.width,
-            height: 80,
-            child: Stack(
-              children: [
-                CustomPaint(
-                  size: Size(size.width, 80),
-                  painter: BNBCustomePainter(),
-                ),
-                Center(
-                  heightFactor: 0.6,
-                  child: FloatingActionButton(
-                    onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => AddProjectScreen())),
-                    backgroundColor: academyYellow,
-                    elevation: 0.1,
-                    child: const Icon(Icons.add),
+        Container(
+          color: Colors.transparent,
+          height: 80,
+          child: Positioned(
+            bottom: 0,
+            left: 0,
+            child: SizedBox(
+              width: size.width,
+              height: 80,
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: Size(size.width, 80),
+                    painter: BNBCustomePainter(),
                   ),
-                ),
-                SizedBox(
-                  width: size.width,
-                  height: 80,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const Kesfet()));
-                          },
-                          icon: const Icon(Icons.search)),
-                      Container(
-                        width: size.width * .20,
-                      ),
-                      IconButton(
-                          onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => const Projects())),
-                          icon: const Icon(Icons.home)),
-                    ],
+                  Center(
+                    heightFactor: 0.6,
+                    child: FloatingActionButton(
+                      onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => AddProjectScreen())),
+                      backgroundColor: academyYellow,
+                      elevation: 0.1,
+                      child: const Icon(Icons.add),
+                    ),
                   ),
-                )
-              ],
+                  SizedBox(
+                    width: size.width,
+                    height: 80,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const Kesfet()));
+                            },
+                            icon: const Icon(Icons.search)),
+                        Container(
+                          width: size.width * .20,
+                        ),
+                        IconButton(
+                            onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) => const Projects())),
+                            icon: const Icon(Icons.home)),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         )

@@ -178,6 +178,7 @@ class _ProjectsState extends State<Projects> {
       ),
       drawer: const CustomDrawer(),
       backgroundColor: bgColor,
+      bottomNavigationBar: NavigationMenu(size: size),
       body: ListView.builder(
           itemCount: _foundedProjects.length,
           itemBuilder: (context, index) {
