@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:akademi_kariyer/constants/colors.dart';
+import 'package:akademi_kariyer/view/add_new_project.dart';
 import 'package:avatar_stack/positions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -61,7 +62,8 @@ class MyProjectsScreen extends StatelessWidget {
                     "Yeni Proje Ekle",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddProjectScreen())),
                 )
               ],
             ),
