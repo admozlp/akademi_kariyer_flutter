@@ -1,4 +1,5 @@
 import 'package:akademi_kariyer/constants/colors.dart';
+import 'package:akademi_kariyer/view/add_new_project.dart';
 import 'package:akademi_kariyer/view/kesfet_safasi.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,9 @@ class NavigationMenu extends StatelessWidget {
                 Center(
                   heightFactor: 0.6,
                   child: FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => AddProjectScreen())),
                     backgroundColor: academyYellow,
                     elevation: 0.1,
                     child: const Icon(Icons.add),

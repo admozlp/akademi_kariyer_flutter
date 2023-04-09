@@ -49,7 +49,20 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: bgColor,
         elevation: 0,
-        title: const Text("Ana Sayfa"),
+        actions: [
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Image.network(
+              "https://oyunveuygulamaakademisi.com/assets/site/oua/assets/sites/images/homepage-images/homepage_img_8.png",
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          )
+        ],
+        title: Text("Akademi Kariyer"),
+        centerTitle: true,
       ),
       drawer: const CustomDrawer(),
       backgroundColor: bgColor,

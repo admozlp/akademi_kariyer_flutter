@@ -62,116 +62,120 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
           style: TextStyle(color: academyBlack),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 70,
-              ),
-              Form(
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          label: Text("Proje Başlığı"),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            width: 2,
-                            color: academyBlue,
-                          )),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: academyDGray,
-                            ),
-                          ),
-                          suffixIcon: Icon(Icons.title),
-                          contentPadding: EdgeInsets.all(20),
-                          prefixIconConstraints:
-                              BoxConstraints(maxHeight: 25, minWidth: 50),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
-                      child: TextFormField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: null,
-                        decoration: const InputDecoration(
-                          label: Text("Proje Açıklaması"),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            width: 2,
-                            color: academyBlue,
-                          )),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: academyDGray,
-                            ),
-                          ),
-                          suffixIcon: Icon(Icons.description),
-                          contentPadding: EdgeInsets.all(20),
-                          prefixIconConstraints:
-                              BoxConstraints(maxHeight: 25, minWidth: 50),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
-                      child: MultiSelectDialogField(
-                        items: _items,
-                        title: Text("Kategoriler"),
-                        selectedColor: academyBlue,
-                        decoration: BoxDecoration(
-                          color: academyGray,
-                          borderRadius: BorderRadius.all(Radius.circular(2)),
-                          border: Border.all(
-                            color: academyDGray,
-                            width: 2,
-                          ),
-                        ),
-                        buttonIcon: const Icon(
-                          Icons.code,
-                          color: academyDGray,
-                        ),
-                        buttonText: const Text(
-                          "Proje Kategorileri",
-                          style: TextStyle(
-                            color: academyDGray,
-                            fontSize: 16,
-                          ),
-                        ),
-                        onConfirm: (results) {},
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                      onPressed: (() {}),
-                      child: const Text(" Projeyi Oluştur"),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          shape: StadiumBorder(),
-                          backgroundColor: academyBlue),
-                    )
-                  ],
+      body: Center(
+        heightFactor: 2,
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(5),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 70,
                 ),
-              )
-            ],
+                Form(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            label: Text("Proje Başlığı"),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                              width: 2,
+                              color: academyBlue,
+                            )),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: academyDGray,
+                              ),
+                            ),
+                            suffixIcon: Icon(Icons.title),
+                            contentPadding: EdgeInsets.all(10),
+                            prefixIconConstraints:
+                                BoxConstraints(maxHeight: 25, minWidth: 50),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
+                          decoration: const InputDecoration(
+                            label: Text("Proje Açıklaması"),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                              width: 2,
+                              color: academyBlue,
+                            )),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: academyDGray,
+                              ),
+                            ),
+                            suffixIcon: Icon(Icons.description),
+                            contentPadding: EdgeInsets.all(10),
+                            prefixIconConstraints:
+                                BoxConstraints(maxHeight: 25, minWidth: 50),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        child: MultiSelectDialogField(
+                          items: _items,
+                          title: Text("Kategoriler"),
+                          selectedColor: academyBlue,
+                          decoration: BoxDecoration(
+                            color: bgColor,
+                            borderRadius: BorderRadius.all(Radius.circular(2)),
+                            border: Border.all(
+                              color: academyDGray,
+                              width: 2,
+                            ),
+                          ),
+                          buttonIcon: const Icon(
+                            Icons.code,
+                            color: academyDGray,
+                          ),
+                          buttonText: const Text(
+                            "Proje Kategorileri",
+                            style: TextStyle(
+                              color: academyDGray,
+                              fontSize: 16,
+                            ),
+                          ),
+                          onConfirm: (results) {},
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      ElevatedButton(
+                        onPressed: (() {}),
+                        child: const Text(" Projeyi Oluştur"),
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(15),
+                            elevation: 0,
+                            shape: StadiumBorder(),
+                            backgroundColor: academyYellow),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
