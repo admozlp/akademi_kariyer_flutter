@@ -1,26 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:oua/registerpage.dart';
 import 'package:oua/bilgilerpage.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Oua App',
-      home: Giris(),
-      routes: <String, WidgetBuilder>{
-        '/register': (BuildContext context) => RegisterPage(),
-        '/bilgiler': (BuildContext context) => BilgilerPage(),
-      },
-    );
-  }
-}
-
-class Giris extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +33,9 @@ class Giris extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               Text(
-                'OUA SOSYAL AĞ',
+                'Hesap Oluştur',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color.fromARGB(248, 255, 255, 255),
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -64,6 +45,21 @@ class Giris extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 32.0),
                 child: Column(
                   children: [
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Ad',
+                        hintStyle: TextStyle(color: Colors.white54),
+                        prefixIcon: Icon(Icons.person, color: Colors.white),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(height: 24.0),
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'Email',
@@ -94,41 +90,38 @@ class Giris extends StatelessWidget {
                       ),
                       style: TextStyle(color: Colors.white),
                     ),
-                    SizedBox(height: 48.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        // TODO: Handle login
-                      },
-                      child: Text('Giriş Yap'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Color.fromARGB(255, 0, 0, 0),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 64.0,
-                          vertical: 16.0,
+                    SizedBox(height: 24.0),
+                    TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: 'Şifre Tekrar',
+                        hintStyle: TextStyle(color: Colors.white54),
+                        prefixIcon: Icon(Icons.lock, color: Colors.white),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
+                      style: TextStyle(color: Colors.white),
                     ),
-                    SizedBox(
-                      height: 24.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Hesabınız yok mu? "),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/register');
-                          },
-                          child: Text(
-                            'Kaydol',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xEDFFFFFF),
-                            ),
+                    SizedBox(height: 48.0),
+                    GestureDetector(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/bilgiler');
+                        },
+                        child: Text('Hesap Oluştur'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Color.fromARGB(255, 0, 0, 0),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 64.0,
+                            vertical: 16.0,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ],
                 ),

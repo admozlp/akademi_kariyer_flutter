@@ -1,26 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:oua/registerpage.dart';
-import 'package:oua/bilgilerpage.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Oua App',
-      home: Giris(),
-      routes: <String, WidgetBuilder>{
-        '/register': (BuildContext context) => RegisterPage(),
-        '/bilgiler': (BuildContext context) => BilgilerPage(),
-      },
-    );
-  }
-}
-
-class Giris extends StatelessWidget {
+class BilgilerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +32,9 @@ class Giris extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               Text(
-                'OUA SOSYAL AĞ',
+                'Kişisel Bilgiler',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color.fromARGB(248, 255, 255, 255),
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -66,9 +46,9 @@ class Giris extends StatelessWidget {
                   children: [
                     TextField(
                       decoration: InputDecoration(
-                        hintText: 'Email',
+                        hintText: 'Slack Kullanıcı Adı',
                         hintStyle: TextStyle(color: Colors.white54),
-                        prefixIcon: Icon(Icons.email, color: Colors.white),
+                        prefixIcon: Icon(Icons.code, color: Colors.white),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -80,11 +60,41 @@ class Giris extends StatelessWidget {
                     ),
                     SizedBox(height: 24.0),
                     TextField(
-                      obscureText: true,
                       decoration: InputDecoration(
-                        hintText: 'Şifre',
+                        hintText: 'LinkedIn Linki',
                         hintStyle: TextStyle(color: Colors.white54),
-                        prefixIcon: Icon(Icons.lock, color: Colors.white),
+                        prefixIcon:
+                            Icon(Icons.business_center, color: Colors.white),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(height: 24.0),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'GitHub Linki',
+                        hintStyle: TextStyle(color: Colors.white54),
+                        prefixIcon: Icon(Icons.data_array, color: Colors.white),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(height: 24.0),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Telefon Numarası',
+                        hintStyle: TextStyle(color: Colors.white54),
+                        prefixIcon: Icon(Icons.call, color: Colors.white),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -97,9 +107,9 @@ class Giris extends StatelessWidget {
                     SizedBox(height: 48.0),
                     ElevatedButton(
                       onPressed: () {
-                        // TODO: Handle login
+                        // TODO: Handle registration
                       },
-                      child: Text('Giriş Yap'),
+                      child: Text('Hesap Oluştur'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: Color.fromARGB(255, 0, 0, 0),
@@ -108,27 +118,6 @@ class Giris extends StatelessWidget {
                           vertical: 16.0,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 24.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Hesabınız yok mu? "),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/register');
-                          },
-                          child: Text(
-                            'Kaydol',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xEDFFFFFF),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
