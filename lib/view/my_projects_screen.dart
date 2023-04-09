@@ -55,6 +55,9 @@ class _MyProjectsScreenState extends State<MyProjectsScreen> {
             return Text("Hata");
           } else if(snapshot.hasData){
             final projects = snapshot.data!;
+            if(projects.length<1){
+              return Center(child: Text("Henüz Proje Oluşturmadınız"),);
+            }
             return ListView.builder(
               itemCount: projects.toList().length,
               itemBuilder: (context, index) => MyProject(projects.toList()[index]),
