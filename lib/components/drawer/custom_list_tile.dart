@@ -1,3 +1,4 @@
+import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -6,6 +7,7 @@ class CustomListTile extends StatelessWidget {
   final String title;
   final IconData? doHaveMoreOptions;
   final int infoCount;
+  final Color color;
 
   const CustomListTile({
     Key? key,
@@ -14,6 +16,7 @@ class CustomListTile extends StatelessWidget {
     required this.title,
     this.doHaveMoreOptions,
     required this.infoCount,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -31,10 +34,7 @@ class CustomListTile extends StatelessWidget {
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    Icon(
-                      icon,
-                      color: Colors.white,
-                    ),
+                    Icon(icon, color: color),
                     if (infoCount > 0)
                       Positioned(
                         right: -5,
@@ -44,7 +44,7 @@ class CustomListTile extends StatelessWidget {
                           width: 10,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.red,
+                            color: academyRed,
                           ),
                         ),
                       ),
@@ -62,8 +62,8 @@ class CustomListTile extends StatelessWidget {
                       flex: 4,
                       child: Text(
                         title,
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: Colors.black,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.clip,
@@ -78,7 +78,7 @@ class CustomListTile extends StatelessWidget {
                           height: 20,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.purple[200],
+                            color: academyYellow,
                           ),
                           child: Center(
                             child: Text(
@@ -102,7 +102,7 @@ class CustomListTile extends StatelessWidget {
                     ? IconButton(
                         icon: Icon(
                           doHaveMoreOptions,
-                          color: Colors.white,
+                          color: Colors.black,
                           size: 12,
                         ),
                         onPressed: () {},

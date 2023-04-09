@@ -1,5 +1,6 @@
 import 'package:akademi_kariyer/components/drawer/bottom_user_info.dart';
 import 'package:akademi_kariyer/components/drawer/custom_list_tile.dart';
+import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/view/my_profile_screen.dart';
 import 'package:akademi_kariyer/view/my_projects_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +21,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
         curve: Curves.easeInOutCubic,
         duration: const Duration(milliseconds: 500),
         width: _isCollapsed ? 300 : 70,
-        margin: const EdgeInsets.only(bottom: 10, top: 10),
+        margin: const EdgeInsets.only(top: 50),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(10),
             topRight: Radius.circular(10),
           ),
-          color: Color.fromRGBO(20, 20, 20, 1),
+          color: bgColor,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -41,7 +42,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 child: IgnorePointer(
                   child: CustomListTile(
                     isCollapsed: _isCollapsed,
-                    icon: Icons.person,
+                    icon: (Icons.person),
+                    color: academyBlue,
                     title: 'Profil',
                     infoCount: 0,
                   ),
@@ -52,6 +54,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     builder: (context) => MyProjectsScreen())),
                 child: IgnorePointer(
                   child: CustomListTile(
+                    color: academyGreen,
                     isCollapsed: _isCollapsed,
                     icon: Icons.file_copy_rounded,
                     title: 'Projelerim',
@@ -62,26 +65,30 @@ class _CustomDrawerState extends State<CustomDrawer> {
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.calendar_today,
+                color: academyYellow,
                 title: 'Takvim',
                 infoCount: 0,
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.message_rounded,
+                color: academyRed,
                 title: 'Mesajlar',
                 infoCount: 8,
               ),
-              const Divider(color: Colors.grey),
+              const Divider(color: academyDGray),
               const Spacer(),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.notifications,
+                color: Colors.black,
                 title: 'Bildirimler',
                 infoCount: 2,
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.settings,
+                color: Colors.black,
                 title: 'Ayarlar',
                 infoCount: 0,
               ),
@@ -97,7 +104,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     _isCollapsed
                         ? Icons.arrow_back_ios
                         : Icons.arrow_forward_ios,
-                    color: Colors.white,
+                    color: academyBlack,
                     size: 16,
                   ),
                   onPressed: () {

@@ -1,6 +1,6 @@
+import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/view/kesfet_safasi.dart';
 import 'package:flutter/material.dart';
-
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({
@@ -31,7 +31,7 @@ class NavigationMenu extends StatelessWidget {
                   heightFactor: 0.6,
                   child: FloatingActionButton(
                     onPressed: () {},
-                    backgroundColor: Colors.orange,
+                    backgroundColor: academyYellow,
                     elevation: 0.1,
                     child: const Icon(Icons.add),
                   ),
@@ -51,7 +51,8 @@ class NavigationMenu extends StatelessWidget {
                       Container(
                         width: size.width * .20,
                       ),
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.home)),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.home)),
                     ],
                   ),
                 )
@@ -92,4 +93,3 @@ class BNBCustomePainter extends CustomPainter {
     return false;
   }
 }
-

@@ -1,3 +1,4 @@
+import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/view/my_profile_screen.dart';
 import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,7 +19,7 @@ class BottomUserInfo extends StatelessWidget {
       height: isCollapsed ? 70 : 100,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white10,
+        color: academyGray,
         borderRadius: BorderRadius.circular(20),
       ),
       child: isCollapsed
@@ -63,7 +64,7 @@ class BottomUserInfo extends StatelessWidget {
                               child: Text(
                                 '${FirebaseAuth.instance.currentUser?.email}',
                                 style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black54,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 ),
@@ -76,7 +77,7 @@ class BottomUserInfo extends StatelessWidget {
                             child: Text(
                               'MEMBER',
                               style: TextStyle(
-                                color: Colors.grey,
+                                color: Color.fromARGB(255, 134, 134, 134),
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -100,7 +101,7 @@ class BottomUserInfo extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.logout,
-                          color: Colors.white,
+                          color: academyRed,
                         ),
                       ),
                     ),
@@ -137,7 +138,7 @@ class BottomUserInfo extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.logout,
-                      color: Colors.white,
+                      color: academyRed,
                       size: 18,
                     ),
                   ),

@@ -1,3 +1,4 @@
+import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:akademi_kariyer/components/drawer/custom_drawer.dart';
@@ -46,10 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: bgColor,
+        elevation: 0,
         title: const Text("Ana Sayfa"),
       ),
       drawer: const CustomDrawer(),
-      backgroundColor: Colors.white10,
+      backgroundColor: bgColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
