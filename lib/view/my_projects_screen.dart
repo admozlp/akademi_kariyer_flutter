@@ -3,12 +3,30 @@
 import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/view/add_new_project.dart';
 import 'package:avatar_stack/positions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:avatar_stack/avatar_stack.dart';
 
-class MyProjectsScreen extends StatelessWidget {
+import '../models/proje.dart';
+
+class MyProjectsScreen extends StatefulWidget {
   const MyProjectsScreen({super.key});
+
+  @override
+  State<MyProjectsScreen> createState() => _MyProjectsScreenState();
+}
+
+class _MyProjectsScreenState extends State<MyProjectsScreen> {
+  final docment = FirebaseAuth.instance.currentUser?.email;
+
+  Stream<List<Proje>> readProject() => FirebaseFirestore.instance
+      .collection("projects")
+      .where('olusturan', isEqualTo: docment)
+      .snapshots()
+      .map((snapshot) => snapshot.docs.map((doc)=>Proje.fromJson(doc.data())).toList());
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,54 +48,37 @@ class MyProjectsScreen extends StatelessWidget {
           style: TextStyle(color: academyBlack),
         ),
       ),
-      body: Stack(children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-          child: Column(children: [
-            Expanded(
-                child: ListView(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 5, bottom: 5),
-                ),
-                MyProject(),
-              ],
-            ))
-          ]),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      shape: StadiumBorder(),
-                      backgroundColor: academyYellow),
-                  child: Text(
-                    "Yeni Proje Ekle",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AddProjectScreen())),
-                )
-              ],
-            ),
-          ),
-        )
-      ]),
+      body: StreamBuilder<List<Proje>>(
+        stream: readProject(),
+        builder: (context, snapshot){
+          if(snapshot.hasError){
+            return Text("Hata");
+          } else if(snapshot.hasData){
+            final projects = snapshot.data!;
+            return ListView.builder(
+              itemCount: projects.toList().length,
+              itemBuilder: (context, index) => MyProject(projects.toList()[index]),
+            );
+          }else{
+            return Center(child: CircularProgressIndicator(),);
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AddProjectScreen()));
+        },
+        backgroundColor: academyYellow,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
 
 class MyProject extends StatelessWidget {
-  const MyProject({
-    super.key,
-  });
+  final Proje project;
+  const MyProject(this.project, {super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +94,7 @@ class MyProject extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "ToDo App",
+                  project.baslik,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 ElevatedButton(
@@ -169,8 +170,7 @@ class MyProject extends StatelessWidget {
             ),
             Column(
               children: [
-                Text(
-                    "Microsoft To Do Microsoft tarafından sunulan bulut tabanlı bir görev yönetimi uygulamasıdır. Kullanıcıların görevlerini bir akıllı telefon, tablet ve bilgisayardan yönetmelerine olanak tanır. ")
+                Text(project.aciklama)
               ],
             ),
             const Divider(

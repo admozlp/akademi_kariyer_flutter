@@ -1,7 +1,11 @@
 import 'package:akademi_kariyer/constants/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
+
+import 'my_projects_screen.dart';
 
 class Category {
   int id;
@@ -21,6 +25,17 @@ class AddProjectScreen extends StatefulWidget {
 }
 
 class _AddProjectScreenState extends State<AddProjectScreen> {
+  TextEditingController baslikController = TextEditingController();
+  TextEditingController aciklamaController = TextEditingController();
+  Map<String, dynamic> project = <String, dynamic>{};
+
+  @override
+  void dispose() {
+    super.dispose();
+    baslikController.clear();
+    aciklamaController.clear();
+  }
+
   // ignore: prefer_final_fields
   static List<Category> _Categorys = [
     Category(id: 1, name: "Flutter"),
@@ -39,8 +54,10 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
   final _items =
       _Categorys.map((Category) => MultiSelectItem(Category, Category.name))
           .toList();
+  List<String> selectedCategories = [];
+  final formKey = GlobalKey<FormState>();
 
-  final _multiSelectKey = GlobalKey<FormFieldState>();
+  //final _multiSelectKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -82,11 +99,13 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                   height: 40,
                 ),
                 Form(
+                  key: formKey,
                   child: Column(
                     children: [
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         child: TextFormField(
+                          controller: baslikController,
                           decoration: const InputDecoration(
                             label: Text("Proje Başlığı"),
                             focusedBorder: OutlineInputBorder(
@@ -105,6 +124,20 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                             prefixIconConstraints:
                                 BoxConstraints(maxHeight: 25, minWidth: 50),
                           ),
+                          validator: (value) {
+                            if (value != null) {
+                              if (value.isEmpty) {
+                                return "Boş bırakılamaz";
+                              } else {
+                                return null;
+                              }
+                            } else {
+                              return "Null olamaz";
+                            }
+                          },
+                          onSaved: (newValue) {
+                            project["baslik"] = newValue;
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -113,6 +146,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         child: TextFormField(
+                          controller: aciklamaController,
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
                           decoration: const InputDecoration(
@@ -133,6 +167,20 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                             prefixIconConstraints:
                                 BoxConstraints(maxHeight: 25, minWidth: 50),
                           ),
+                          validator: (value) {
+                            if (value != null) {
+                              if (value.isEmpty) {
+                                return "Boş bırakılamaz";
+                              } else {
+                                return null;
+                              }
+                            } else {
+                              return "Null olamaz";
+                            }
+                          },
+                          onSaved: (newValue) {
+                            project["aciklama"] = newValue;
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -163,20 +211,62 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                               fontSize: 16,
                             ),
                           ),
-                          onConfirm: (results) {},
+                          onConfirm: (results) {
+                            String cat = "";
+                            results.forEach((element) {
+                              selectedCategories.add(element.name.toString());
+                            });
+                            for (int i = 0;
+                                i < selectedCategories.length;
+                                i++) {
+                              cat += '${selectedCategories[i]}, ';
+                            }
+                            ;
+                            project["kategoriler"] = cat;
+                          },
+                          validator: (value) {
+                            if (value != null) {
+                              if (value.isEmpty) {
+                                return "Kategori Seçiniz";
+                              } else {
+                                return null;
+                              }
+                            } else {
+                              return "Null olamaz";
+                            }
+                          },
                         ),
                       ),
                       const SizedBox(
                         height: 30,
                       ),
                       ElevatedButton(
-                        onPressed: (() {}),
-                        child: const Text(" Projeyi Oluştur"),
+                        onPressed: (() {
+                          final icerikUygunMu = formKey.currentState?.validate();
+                          if (icerikUygunMu == true) {
+                            formKey.currentState?.save();
+                            var doc = FirebaseAuth.instance.currentUser?.email;
+                            CollectionReference projects =
+                            FirebaseFirestore.instance.collection('projects');
+                            project['olusturan'] = doc;
+                            Future<void> addUser() {
+                              return projects
+                                  .add(project)
+                                  .then((value) => print("Project Added"))
+                                  .catchError((error) =>
+                                  print("Failed to add porject: $error"));
+                            }
+                            addUser();
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                builder: (context) => const MyProjectsScreen()));
+                          }
+                        }),
                         style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(15),
                             elevation: 0,
-                            shape: StadiumBorder(),
+                            shape: const StadiumBorder(),
                             backgroundColor: academyYellow),
+                        child: const Text(" Projeyi Oluştur"),
                       )
                     ],
                   ),

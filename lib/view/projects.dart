@@ -227,97 +227,99 @@ class _ProjectsState extends State<Projects> {
             ),
           ],
         ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 14,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 14,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                //margin:  EdgeInsets.all(8.0),
-                children: [
-                  Text(
-                    project.name,
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
+                  //margin:  EdgeInsets.all(8.0),
+                  children: [
+                    Text(
+                      project.name,
+                      style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    Text(
+                      yuzde.toString(),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: EdgeInsets.all(5.0),
+                  child: Text(project.comment),
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                Container(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                          child: ListView.builder(
+                              itemCount: categoryname.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    categoryname[index].name,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                );
+                              }),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                        style: buttonPrimary,
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProjectDetail(projectid: project.id,yuzde: yuzde,categoryname: categoryname,)));
+                        },
+                        child: Text(
+                          "Daha Fazla",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                    Icon(
+                      Icons.favorite_border,
                       color: Colors.blue,
-                    ),
-                  ),
-                  Text(
-                    yuzde.toString(),
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green,
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                margin: EdgeInsets.all(5.0),
-                child: Text(project.comment),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                        child: ListView.builder(
-                            itemCount: categoryname.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return ElevatedButton(
-                                onPressed: () {},
-                                child: Text(
-                                  categoryname[index].name,
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              );
-                            }),
-                      )
-                    ],
+                    )
+                  ],
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    projeusername,
+                    style: TextStyle(color: Colors.deepOrange),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                      style: buttonPrimary,
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ProjectDetail(projectid: project.id,yuzde: yuzde,categoryname: categoryname,)));
-                      },
-                      child: Text(
-                        "Daha Fazla",
-                        style: TextStyle(color: Colors.white),
-                      )),
-                  Icon(
-                    Icons.favorite_border,
-                    color: Colors.blue,
-                  )
-                ],
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  projeusername,
-                  style: TextStyle(color: Colors.deepOrange),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
