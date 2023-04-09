@@ -239,7 +239,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             MenuItem(
                 itemTitle: "Projelerim",
                 itemIcon: Icons.file_copy_rounded,
-                itemPressed: () {}),
+                itemPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => MyProjectsScreen()));
+                }),
             MenuItem(
                 itemTitle: "Becerilerim",
                 itemIcon: Icons.pan_tool_rounded,
