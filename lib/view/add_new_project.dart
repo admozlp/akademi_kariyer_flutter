@@ -72,7 +72,14 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 70,
+                  width: 300,
+                  child: Text(
+                    "Proje adını ve açıklamasını ekle, kullandığın ve kullanacağın teknolojileri seç ve projen aradığın yeteneklere sahip takım arkadaşları ile eşlessin!",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
                 ),
                 Form(
                   child: Column(

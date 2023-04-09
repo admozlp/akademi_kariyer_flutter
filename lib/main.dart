@@ -1,4 +1,5 @@
 import 'package:akademi_kariyer/constants/colors.dart';
+import 'package:akademi_kariyer/view/projects.dart';
 import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:akademi_kariyer/components/drawer/custom_drawer.dart';
@@ -45,33 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: bgColor,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Image.network(
-              "https://oyunveuygulamaakademisi.com/assets/site/oua/assets/sites/images/homepage-images/homepage_img_8.png",
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(
-            width: 10,
-          )
-        ],
-        title: Text("Akademi Kariyer"),
-        centerTitle: true,
-      ),
-      drawer: const CustomDrawer(),
-      backgroundColor: bgColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [ElevatedButton(onPressed: () {}, child: Text("data"))],
-      ),
-      bottomNavigationBar: NavigationMenu(size: size),
-    );
+    return Projects();
+    // bottomNavigationBar: NavigationMenu(size: size),
   }
 }

@@ -1,6 +1,7 @@
 import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/view/add_new_project.dart';
 import 'package:akademi_kariyer/view/kesfet_safasi.dart';
+import 'package:akademi_kariyer/view/projects.dart';
 import 'package:flutter/material.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -55,7 +56,10 @@ class NavigationMenu extends StatelessWidget {
                         width: size.width * .20,
                       ),
                       IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.home)),
+                          onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const Projects())),
+                          icon: const Icon(Icons.home)),
                     ],
                   ),
                 )

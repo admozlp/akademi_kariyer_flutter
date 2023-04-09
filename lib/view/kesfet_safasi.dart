@@ -13,51 +13,61 @@ class Kesfet extends StatefulWidget {
 class _KesfetState extends State<Kesfet> {
   final List<User> _users = [
     User(
+        1,
         'Elliana Palacios',
         'Eşleşme 50%',
         'https://images.unsplash.com/photo-1504735217152-b768bcab5ebc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=0ec8291c3fd2f774a365c8651210a18b',
         false),
     User(
+        2,
         'Kayley Dwyer',
         'Eşleşme 65%',
         'https://images.unsplash.com/photo-1503467913725-8484b65b0715?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=cf7f82093012c4789841f570933f88e3',
         false),
     User(
+        3,
         'Kathleen Mcdonough',
         'Eşleşme 45%',
         'https://images.unsplash.com/photo-1507081323647-4d250478b919?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b717a6d0469694bbe6400e6bfe45a1da',
         false),
     User(
+        4,
         'Kathleen Dyer',
         'Eşleşme 80%',
         'https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=ddcb7ec744fc63472f2d9e19362aa387',
         false),
     User(
+        5,
         'Mikayla Marquez',
         'Eşleşme 68%',
         'https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         false),
     User(
+        6,
         'Kiersten Lange',
         'Eşleşme 90%',
         'https://images.unsplash.com/photo-1542534759-05f6c34a9e63?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         false),
     User(
+        7,
         'Carys Metz',
         'Eşleşme 72%',
         'https://images.unsplash.com/photo-1516239482977-b550ba7253f2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         false),
     User(
+        8,
         'Ignacio Schmidt',
         'Eşleşme 92%',
         'https://images.unsplash.com/photo-1542973748-658653fb3d12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         false),
     User(
+        9,
         'Clyde Lucas',
         'Eşleşme 73%',
         'https://images.unsplash.com/photo-1569443693539-175ea9f007e8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         false),
     User(
+        10,
         'Mikayla Marquez',
         'Eşleşme 99%',
         'https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
