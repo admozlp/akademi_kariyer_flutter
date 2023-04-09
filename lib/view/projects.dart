@@ -1,6 +1,7 @@
 import 'package:akademi_kariyer/components/drawer/custom_drawer.dart';
 import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/nav/NavigationMenu.dart';
+import 'package:akademi_kariyer/view/project_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:akademi_kariyer/models/user.dart';
 import 'package:akademi_kariyer/models/project.dart';
@@ -295,7 +296,10 @@ class _ProjectsState extends State<Projects> {
                 children: [
                   ElevatedButton(
                       style: buttonPrimary,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ProjectDetail(projectid: project.id,yuzde: yuzde,categoryname: categoryname,)));
+                      },
                       child: Text(
                         "Daha Fazla",
                         style: TextStyle(color: Colors.white),
@@ -345,7 +349,7 @@ String range(
       .where((element) => element.projectid == projectid)
       .toList();
   int count = 0;
-  print(suankiuserid);
+
   for (var i in pc) {
     for (var j in uc) {
       if (j.categoryid == i.categoryid) {
@@ -353,7 +357,9 @@ String range(
       }
     }
   }
-  var yuzde = "%" + (((100 * count) / pc.length).toString());
+  var y=((100*count)/pc.length);
+  var a=y.ceil();
+  var yuzde="%"+a.toString();
 
   return yuzde;
 }
