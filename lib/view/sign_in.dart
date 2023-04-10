@@ -28,8 +28,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return curentUser == null
-        ? SafeArea(
+    if (curentUser == null) {
+      return SafeArea(
             child: Scaffold(
             backgroundColor: bgColor,
             body: SingleChildScrollView(
@@ -42,14 +42,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       width: 300,
                       child: Column(
                         children: [
-                          SizedBox(height: 48.0),
-                          Image(
+                          const SizedBox(height: 48.0),
+                          const Image(
                             image: NetworkImage(
                                 "https://oyunveuygulamaakademisi.com/assets/site/oua/assets/sites/images/homepage-images/homepage_img_8.png"),
                             height: 72.0,
                           ),
-                          SizedBox(height: 16.0),
-                          Text(
+                          const SizedBox(height: 16.0),
+                          const Text(
                             'Akademi Kariyer',
                             style: TextStyle(
                               color: academyBlack,
@@ -57,12 +57,12 @@ class _SignInScreenState extends State<SignInScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 48.0),
-                          Divider(
+                          const SizedBox(height: 48.0),
+                          const Divider(
                             color: academyBlue,
                             thickness: 2,
                           ),
-                          SizedBox(height: 48.0),
+                          const SizedBox(height: 48.0),
                           const Text(
                             "Giriş Yap",
                             textScaleFactor: 1.5,
@@ -103,8 +103,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             elevation: 0,
-                            padding: EdgeInsets.all(15),
-                            shape: StadiumBorder(),
+                            padding: const EdgeInsets.all(15),
+                            shape: const StadiumBorder(),
                             backgroundColor: academyYellow),
                         onPressed: () async {
                           try {
@@ -127,21 +127,21 @@ class _SignInScreenState extends State<SignInScreen> {
                           "Giriş Yap",
                           style: TextStyle(color: academyBlack),
                         )),
-                    SizedBox(height: 15.0),
+                    const SizedBox(height: 15.0),
                     ElevatedButton(
                       onPressed: () {
                         // TODO: Handle login
                       },
-                      child: Text('Google ile Devam Et'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(210, 66, 131, 241),
-                        foregroundColor: Color.fromARGB(255, 0, 0, 0),
-                        shape: StadiumBorder(),
-                        padding: EdgeInsets.symmetric(
+                        backgroundColor: const Color.fromARGB(210, 66, 131, 241),
+                        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+                        shape: const StadiumBorder(),
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 50.0,
                           vertical: 16.0,
                         ),
                       ),
+                      child: const Text('Google ile Devam Et'),
                     ),
                     TextButton(
                         onPressed: () {
@@ -157,7 +157,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
             ),
-          ))
-        : const MyHomePage();
+          ));
+    } else {
+      return const MyHomePage();
+    }
   }
 }

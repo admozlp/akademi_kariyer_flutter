@@ -4,7 +4,6 @@ import 'package:akademi_kariyer/models/project.dart';
 import 'package:akademi_kariyer/models/Category.dart';
 import 'package:akademi_kariyer/models/ProjectCategory.dart';
 import 'package:akademi_kariyer/models/UserCategory.dart';
-
 import '../components/drawer/custom_drawer.dart';
 import '../constants/colors.dart';
 import '../nav/NavigationMenu.dart';
@@ -14,7 +13,7 @@ class ProjectDetail extends StatefulWidget {
   final String  yuzde;
   final List<Category> categoryname;
 
-  ProjectDetail({Key? key, required this.projectid,required this.yuzde,required this.categoryname}) : super(key: key);
+  const ProjectDetail({Key? key, required this.projectid,required this.yuzde,required this.categoryname}) : super(key: key);
 
 
   @override
@@ -86,7 +85,6 @@ class _ProjectDetailState extends State<ProjectDetail> {
     UserCategory(2, 1, 3),
     UserCategory(3, 2, 1),
     UserCategory(4, 2, 2),
-
   ];
 
   List<User> _foundedUsers = [];
@@ -143,7 +141,7 @@ class _ProjectDetailState extends State<ProjectDetail> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 3,
                 blurRadius: 10,
-                offset: Offset(0,3),
+                offset: const Offset(0,3),
               ),
             ],
           ),
@@ -152,27 +150,24 @@ class _ProjectDetailState extends State<ProjectDetail> {
             child: Column(
 
               children: [
-                SizedBox(height: 14,),
-                Container(
-                  //alignment: Alignment.center,
-                  child: Image.network(
-                    u.image,
-                    height: 150,),
-                ),
-                Text(u.name,style:TextStyle(color: Colors.deepOrange),),
-                SizedBox(height: 14,),
+                const SizedBox(height: 14,),
+                Image.network(
+                  u.image,
+                  height: 150,),
+                Text(u.name,style:const TextStyle(color: Colors.deepOrange),),
+                const SizedBox(height: 14,),
                 Row(
                   mainAxisAlignment:MainAxisAlignment.spaceBetween,
                   children:[
                     Text(p.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize:23,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,),
                     ),
                     Text(widget.yuzde,
 
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize:18,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,),
@@ -181,36 +176,34 @@ class _ProjectDetailState extends State<ProjectDetail> {
                 ),
                 Container(
                   alignment: Alignment.topLeft,
-                  margin:  EdgeInsets.all(5.0),
+                  margin:  const EdgeInsets.all(5.0),
                   child:Text(p.comment),
                 ),
                 const SizedBox(height: 8.0,),
-                Container(
-                  child:SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
 
-                          child: ListView.builder(
-                              itemCount:widget.categoryname.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context,index){
-                                return ElevatedButton(
-                                  onPressed: () { },
-                                  child: Text(
-                                    widget.categoryname[index].name,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                        child: ListView.builder(
+                            itemCount:widget.categoryname.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context,index){
+                              return ElevatedButton(
+                                onPressed: () { },
+                                child: Text(
+                                  widget.categoryname[index].name,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
 
-                                );
+                              );
 
-                              }
-                          ),
+                            }
+                        ),
 
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
                 const SizedBox(height: 8.0,),

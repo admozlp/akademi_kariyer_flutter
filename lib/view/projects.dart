@@ -164,7 +164,7 @@ class _ProjectsState extends State<Projects> {
         elevation: 0,
         actions: [
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Image.network(
               "https://oyunveuygulamaakademisi.com/assets/site/oua/assets/sites/images/homepage-images/homepage_img_8.png",
               fit: BoxFit.cover,
@@ -174,7 +174,7 @@ class _ProjectsState extends State<Projects> {
             width: 10,
           )
         ],
-        title: Text("Akademi Kariyer"),
+        title: const Text("Akademi Kariyer"),
         centerTitle: true,
       ),
       drawer: const CustomDrawer(),
@@ -223,16 +223,16 @@ class _ProjectsState extends State<Projects> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 3,
               blurRadius: 10,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 14,
                 ),
                 Row(
@@ -242,7 +242,7 @@ class _ProjectsState extends State<Projects> {
                   children: [
                     Text(
                       project.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 23,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
@@ -250,7 +250,7 @@ class _ProjectsState extends State<Projects> {
                     ),
                     Text(
                       yuzde.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
@@ -260,33 +260,31 @@ class _ProjectsState extends State<Projects> {
                 ),
                 Container(
                   alignment: Alignment.topLeft,
-                  margin: EdgeInsets.all(5.0),
+                  margin: const EdgeInsets.all(5.0),
                   child: Text(project.comment),
                 ),
                 const SizedBox(
                   height: 8.0,
                 ),
-                Container(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                          child: ListView.builder(
-                              itemCount: categoryname.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    categoryname[index].name,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                );
-                              }),
-                        )
-                      ],
-                    ),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                        child: ListView.builder(
+                            itemCount: categoryname.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return ElevatedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  categoryname[index].name,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              );
+                            }),
+                      )
+                    ],
                   ),
                 ),
                 const SizedBox(
@@ -299,13 +297,17 @@ class _ProjectsState extends State<Projects> {
                         style: buttonPrimary,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProjectDetail(projectid: project.id,yuzde: yuzde,categoryname: categoryname,)));
+                              builder: (context) => ProjectDetail(
+                                    projectid: project.id,
+                                    yuzde: yuzde,
+                                    categoryname: categoryname,
+                                  )));
                         },
-                        child: Text(
+                        child: const Text(
                           "Daha Fazla",
                           style: TextStyle(color: Colors.white),
                         )),
-                    Icon(
+                    const Icon(
                       Icons.favorite_border,
                       color: Colors.blue,
                     )
@@ -315,7 +317,7 @@ class _ProjectsState extends State<Projects> {
                   alignment: Alignment.topLeft,
                   child: Text(
                     projeusername,
-                    style: TextStyle(color: Colors.deepOrange),
+                    style: const TextStyle(color: Colors.deepOrange),
                   ),
                 ),
               ],
@@ -359,16 +361,16 @@ String range(
       }
     }
   }
-  var y=((100*count)/pc.length);
-  var a=y.ceil();
-  var yuzde="%"+a.toString();
+  var y = ((100 * count) / pc.length);
+  var a = y.ceil();
+  var yuzde = "%$a";
 
   return yuzde;
 }
 
 final ButtonStyle buttonPrimary = ElevatedButton.styleFrom(
-  minimumSize: Size(40, 30),
-  primary: Colors.blue,
+  minimumSize: const Size(40, 30),
+  backgroundColor: Colors.blue,
   elevation: 0,
   shape: const RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(10)),

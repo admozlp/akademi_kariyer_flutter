@@ -2,7 +2,6 @@ import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/models/userk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:akademi_kariyer/models/user.dart';
 
 import 'kesfet_detail.dart';
 
@@ -118,7 +117,7 @@ class _KesfetState extends State<Kesfet> {
             decoration: InputDecoration(
                 filled: true,
                 fillColor: academyGray,
-                contentPadding: EdgeInsets.all(0),
+                contentPadding: const EdgeInsets.all(0),
                 prefixIcon: const Icon(
                   Icons.search,
                   color: academyBlack,
@@ -127,19 +126,19 @@ class _KesfetState extends State<Kesfet> {
                   borderRadius: BorderRadius.circular(50),
                   borderSide: BorderSide.none,
                 ),
-                hintStyle: TextStyle(fontSize: 14, color: academyDGray),
+                hintStyle: const TextStyle(fontSize: 14, color: academyDGray),
                 hintText: "Kullanıcı Ara"),
           ),
         ),
       ),
       body: Container(
         color: bgColor,
-        child: _foundedUsers.length > 0
+        child: _foundedUsers.isNotEmpty
             ? ListView.builder(
                 itemCount: _foundedUsers.length,
                 itemBuilder: (context, index) {
                   return Slidable(
-                    actionPane: SlidableDrawerActionPane(),
+                    actionPane: const SlidableDrawerActionPane(),
                     actionExtentRatio: 0.25,
                     child: userComponent(user: _foundedUsers[index]),
                     actions: <Widget>[
@@ -209,7 +208,8 @@ class _KesfetState extends State<Kesfet> {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(user.eslesmeOrani, style: TextStyle(color: academyDGray)),
+                Text(user.eslesmeOrani,
+                    style: const TextStyle(color: academyDGray)),
               ])
             ]),
           ),

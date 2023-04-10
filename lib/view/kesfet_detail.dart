@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../models/userk.dart';
 
 class ProfileUI extends StatefulWidget {
@@ -19,7 +18,7 @@ class _ProfileUIState extends State<ProfileUI> {
       appBar: AppBar(
         leading: IconButton(
           color: Colors.white,
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },

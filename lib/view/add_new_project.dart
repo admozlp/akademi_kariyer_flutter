@@ -18,7 +18,7 @@ class Category {
 }
 
 class AddProjectScreen extends StatefulWidget {
-  AddProjectScreen({super.key});
+  const AddProjectScreen({super.key});
 
   @override
   State<AddProjectScreen> createState() => _AddProjectScreenState();
@@ -36,8 +36,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
     aciklamaController.clear();
   }
 
-  // ignore: prefer_final_fields
-  static List<Category> _Categorys = [
+  static final List<Category> _Categorys = [
     Category(id: 1, name: "Flutter"),
     Category(id: 2, name: "PHP"),
     Category(id: 3, name: "Node.js"),
@@ -54,10 +53,9 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
   final _items =
       _Categorys.map((Category) => MultiSelectItem(Category, Category.name))
           .toList();
+
   List<String> selectedCategories = [];
   final formKey = GlobalKey<FormState>();
-
-  //final _multiSelectKey = GlobalKey<FormFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +101,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: TextFormField(
                           controller: baslikController,
                           decoration: const InputDecoration(
@@ -144,7 +142,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                         height: 10,
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: TextFormField(
                           controller: aciklamaController,
                           keyboardType: TextInputType.multiline,
@@ -187,14 +185,15 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                         height: 10,
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: MultiSelectDialogField(
                           items: _items,
-                          title: Text("Kategoriler"),
+                          title: const Text("Kategoriler"),
                           selectedColor: academyBlue,
                           decoration: BoxDecoration(
                             color: bgColor,
-                            borderRadius: BorderRadius.all(Radius.circular(2)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(2)),
                             border: Border.all(
                               color: academyDGray,
                               width: 2,
@@ -242,23 +241,28 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                       ),
                       ElevatedButton(
                         onPressed: (() {
-                          final icerikUygunMu = formKey.currentState?.validate();
+                          final icerikUygunMu =
+                              formKey.currentState?.validate();
                           if (icerikUygunMu == true) {
                             formKey.currentState?.save();
                             var doc = FirebaseAuth.instance.currentUser?.email;
-                            CollectionReference projects =
-                            FirebaseFirestore.instance.collection('projects');
+                            CollectionReference projects = FirebaseFirestore
+                                .instance
+                                .collection('projects');
                             project['olusturan'] = doc;
                             Future<void> addUser() {
                               return projects
                                   .add(project)
                                   .then((value) => print("Project Added"))
                                   .catchError((error) =>
-                                  print("Failed to add porject: $error"));
+                                      print("Failed to add porject: $error"));
                             }
+
                             addUser();
-                            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                builder: (context) => const MyProjectsScreen()));
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MyProjectsScreen()));
                           }
                         }),
                         style: ElevatedButton.styleFrom(

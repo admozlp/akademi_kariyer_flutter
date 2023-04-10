@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
+
 import 'package:akademi_kariyer/view/my_projects_screen.dart';
 import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:akademi_kariyer/view/update_my_profile_screen.dart';
@@ -10,7 +12,7 @@ import 'package:get/get.dart';
 import '../models/profile.dart';
 
 class MyProfileScreen extends StatefulWidget {
-  MyProfileScreen({super.key});
+  const MyProfileScreen({super.key});
 
   @override
   State<MyProfileScreen> createState() => _MyProfileScreenState();
@@ -18,9 +20,9 @@ class MyProfileScreen extends StatefulWidget {
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
   Future<Profile?> readProfile() async {
-    var doc_id = FirebaseAuth.instance.currentUser?.email;
+    var docId = FirebaseAuth.instance.currentUser?.email;
     final docProfile =
-        FirebaseFirestore.instance.collection("profile").doc(doc_id);
+        FirebaseFirestore.instance.collection("profile").doc(docId);
     final snapshot = await docProfile.get();
     if (snapshot.exists) {
       return Profile.fromJson(snapshot.data()!);
@@ -186,48 +188,46 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             const SizedBox(
               height: 30,
             ),
-            Container(
-              child: Wrap(
-                spacing: 10,
-                children: const [
-                  Chip(
-                    label: Text('Angular'),
-                    avatar: FaIcon(FontAwesomeIcons.angular),
-                    backgroundColor: Color.fromARGB(255, 240, 96, 86),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                  Chip(
-                    label: Text('React'),
-                    avatar: FaIcon(FontAwesomeIcons.react),
-                    backgroundColor: Color.fromARGB(255, 124, 172, 255),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                  Chip(
-                    label: Text('Node.js'),
-                    avatar: FaIcon(FontAwesomeIcons.nodeJs),
-                    backgroundColor: Colors.green,
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                  Chip(
-                    label: Text('HTML5'),
-                    avatar: FaIcon(FontAwesomeIcons.html5),
-                    backgroundColor: Color.fromARGB(255, 255, 140, 64),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                  Chip(
-                    label: Text('CSS'),
-                    avatar: FaIcon(FontAwesomeIcons.css3),
-                    backgroundColor: Color.fromARGB(255, 28, 153, 255),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                  Chip(
-                    label: Text('MySQL'),
-                    avatar: FaIcon(FontAwesomeIcons.database),
-                    backgroundColor: Colors.grey,
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  ),
-                ],
-              ),
+            Wrap(
+              spacing: 10,
+              children: const [
+                Chip(
+                  label: Text('Angular'),
+                  avatar: FaIcon(FontAwesomeIcons.angular),
+                  backgroundColor: Color.fromARGB(255, 240, 96, 86),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+                Chip(
+                  label: Text('React'),
+                  avatar: FaIcon(FontAwesomeIcons.react),
+                  backgroundColor: Color.fromARGB(255, 124, 172, 255),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+                Chip(
+                  label: Text('Node.js'),
+                  avatar: FaIcon(FontAwesomeIcons.nodeJs),
+                  backgroundColor: Colors.green,
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+                Chip(
+                  label: Text('HTML5'),
+                  avatar: FaIcon(FontAwesomeIcons.html5),
+                  backgroundColor: Color.fromARGB(255, 255, 140, 64),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+                Chip(
+                  label: Text('CSS'),
+                  avatar: FaIcon(FontAwesomeIcons.css3),
+                  backgroundColor: Color.fromARGB(255, 28, 153, 255),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+                Chip(
+                  label: Text('MySQL'),
+                  avatar: FaIcon(FontAwesomeIcons.database),
+                  backgroundColor: Colors.grey,
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+              ],
             ),
             const SizedBox(
               height: 40,
@@ -241,7 +241,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 itemIcon: Icons.file_copy_rounded,
                 itemPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => MyProjectsScreen()));
+                      builder: (context) => const MyProjectsScreen()));
                 }),
             MenuItem(
                 itemTitle: "Becerilerim",
@@ -254,21 +254,25 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             const SizedBox(
               height: 30,
             ),
-            Divider(),
+            const Divider(),
             const SizedBox(
               height: 30,
             ),
             ElevatedButton(
               onPressed: (() async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => SignInScreen()));
+
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context){
+                  return const SignInScreen();
+                }), (r){
+                  return false;
+                });
               }),
-              child: const Text("Çıkış Yap"),
               style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  shape: StadiumBorder(),
+                  shape: const StadiumBorder(),
                   backgroundColor: academyRed),
+              child: const Text("Çıkış Yap"),
             )
           ],
         ),
@@ -307,7 +311,7 @@ class MenuItem extends StatelessWidget {
         ),
         title: Text(
           itemTitle,
-          style: Theme.of(context).textTheme.bodyText1?.apply(color: itemColor),
+          style: Theme.of(context).textTheme.bodyLarge?.apply(color: itemColor),
         ),
         trailing: Container(
           width: 25,
@@ -326,5 +330,5 @@ class MenuItem extends StatelessWidget {
 
 void _navigateToNextScreen(BuildContext context) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => UpdateProfileScreen()));
+      .push(MaterialPageRoute(builder: (context) => const UpdateProfileScreen()));
 }

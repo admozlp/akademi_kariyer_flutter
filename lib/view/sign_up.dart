@@ -1,12 +1,10 @@
-// ignore_for_file: void_checks
+// ignore_for_file: void_checks, use_build_context_synchronously
 
 import 'package:akademi_kariyer/constants/colors.dart';
 import 'package:akademi_kariyer/view/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import '../main.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -46,14 +44,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 width: 300,
                 child: Column(
                   children: [
-                    SizedBox(height: 48.0),
-                    Image(
+                    const SizedBox(height: 48.0),
+                    const Image(
                       image: NetworkImage(
                           "https://oyunveuygulamaakademisi.com/assets/site/oua/assets/sites/images/homepage-images/homepage_img_8.png"),
                       height: 72.0,
                     ),
-                    SizedBox(height: 16.0),
-                    Text(
+                    const SizedBox(height: 16.0),
+                    const Text(
                       'Akademi Kariyer',
                       style: TextStyle(
                         color: academyBlack,
@@ -61,12 +59,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 48.0),
-                    Divider(
+                    const SizedBox(height: 48.0),
+                    const Divider(
                       color: academyBlue,
                       thickness: 2,
                     ),
-                    SizedBox(height: 48.0),
+                    const SizedBox(height: 48.0),
                     const Text(
                       "Hesap Oluştur",
                       textScaleFactor: 2,
@@ -75,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 15,
                     ),
                     TextField(
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       controller: emailController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.email),
@@ -90,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       controller: passController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.lock),
@@ -105,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       controller: passTekrarController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.lock),
@@ -117,7 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 12,
                     ),
                     TextField(
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       controller: uuidController,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.key),
@@ -134,8 +132,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      padding: EdgeInsets.all(15),
-                      shape: StadiumBorder(),
+                      padding: const EdgeInsets.all(15),
+                      shape: const StadiumBorder(),
                       backgroundColor: academyYellow),
                   onPressed: () async {
                     bool check = false;
@@ -182,7 +180,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
                   },
                   child: const Text("Kaydol")),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextButton(
@@ -206,7 +204,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     var pass = passController.text;
     var passTekrar = passTekrarController.text;
     var uuid = uuidController.text;
-    bool check = false;
     if (email != "" && pass.length > 3 && pass == passTekrar && uuid != "") {
       return true;
     } else {

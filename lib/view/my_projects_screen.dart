@@ -55,7 +55,7 @@ class _MyProjectsScreenState extends State<MyProjectsScreen> {
             return Text("Hata");
           } else if(snapshot.hasData){
             final projects = snapshot.data!;
-            if(projects.length<1){
+            if(projects.isEmpty){
               return Center(child: Text("Henüz Proje Oluşturmadınız"),);
             }
             return ListView.builder(
@@ -123,50 +123,48 @@ class MyProject extends StatelessWidget {
               indent: 5,
               color: academyRed,
             ),
-            Container(
-              child: Wrap(
-                spacing: 3,
-                children: const [
-                  Chip(
-                    label: Text(
-                      'Angular',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    avatar: FaIcon(
-                      FontAwesomeIcons.angular,
-                      size: 20,
-                    ),
-                    backgroundColor: Color.fromARGB(255, 240, 96, 86),
-                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+            Wrap(
+              spacing: 3,
+              children: const [
+                Chip(
+                  label: Text(
+                    'Angular',
+                    style: TextStyle(fontSize: 12),
                   ),
-                  Chip(
-                    label: Text(
-                      'Node.js',
-                      style: TextStyle(
-                        fontSize: 12,
-                      ),
-                    ),
-                    avatar: FaIcon(
-                      FontAwesomeIcons.nodeJs,
-                      size: 20,
-                    ),
-                    backgroundColor: Colors.green,
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  avatar: FaIcon(
+                    FontAwesomeIcons.angular,
+                    size: 20,
                   ),
-                  Chip(
-                    label: Text(
-                      'Cloud',
-                      style: TextStyle(fontSize: 12),
+                  backgroundColor: Color.fromARGB(255, 240, 96, 86),
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                ),
+                Chip(
+                  label: Text(
+                    'Node.js',
+                    style: TextStyle(
+                      fontSize: 12,
                     ),
-                    avatar: FaIcon(
-                      FontAwesomeIcons.cloud,
-                      size: 20,
-                    ),
-                    backgroundColor: Color.fromARGB(255, 255, 140, 64),
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   ),
-                ],
-              ),
+                  avatar: FaIcon(
+                    FontAwesomeIcons.nodeJs,
+                    size: 20,
+                  ),
+                  backgroundColor: Colors.green,
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+                Chip(
+                  label: Text(
+                    'Cloud',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  avatar: FaIcon(
+                    FontAwesomeIcons.cloud,
+                    size: 20,
+                  ),
+                  backgroundColor: Color.fromARGB(255, 255, 140, 64),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                ),
+              ],
             ),
             const SizedBox(
               height: 5,

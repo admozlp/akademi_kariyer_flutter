@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +22,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   }
 
   Future<Profile?> readProfile() async {
-    var doc_id = FirebaseAuth.instance.currentUser?.email;
+    var docId = FirebaseAuth.instance.currentUser?.email;
     final docProfile =
-        FirebaseFirestore.instance.collection("profile").doc(doc_id);
+        FirebaseFirestore.instance.collection("profile").doc(docId);
     final snapshot = await docProfile.get();
     if (snapshot.exists) {
       return Profile.fromJson(snapshot.data()!);
@@ -175,7 +177,7 @@ class _PorfileWidgetState extends State<PorfileWidget> {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextFormField(
                       controller: adSoyadController,
                       decoration: const InputDecoration(
@@ -216,7 +218,7 @@ class _PorfileWidgetState extends State<PorfileWidget> {
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextFormField(
                       controller: emailController,
                       decoration: const InputDecoration(
@@ -257,7 +259,7 @@ class _PorfileWidgetState extends State<PorfileWidget> {
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextFormField(
                       controller: linkedin,
                       decoration: const InputDecoration(
@@ -298,7 +300,7 @@ class _PorfileWidgetState extends State<PorfileWidget> {
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextFormField(
                       controller: github,
                       decoration: const InputDecoration(
@@ -339,7 +341,7 @@ class _PorfileWidgetState extends State<PorfileWidget> {
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextFormField(
                       controller: profilAciklama,
                       decoration: const InputDecoration(
@@ -400,7 +402,7 @@ class _PorfileWidgetState extends State<PorfileWidget> {
 
                         addUser();
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MyProfileScreen()));
+                            builder: (context) => const MyProfileScreen()));
                       }
                     },
                     style: ElevatedButton.styleFrom(
